@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC Academy — Formación Profesional en Alisado Progresivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#b8956a;
+  --gold-light:#d4a574;
+  --black:#0a0a0a;
+  --text:#2a2a2a;
+  --bg:#fafaf8;
+  --white:#fff;
+  --border:#e8e6e1;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Crimson Pro',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+
+/* ============================================================
+   STICKY BAR (gatillo 5)
+   ============================================================ */
+.sc-sticky-bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:var(--black);border-bottom:1px solid rgba(184,149,106,.25);display:flex;align-items:center;justify-content:center;gap:8px 14px;padding:8px 16px;transform:translateY(-100%);transition:transform .4s ease;flex-wrap:wrap;text-align:center}
+.sc-sticky-bar.visible{transform:translateY(0)}
+.sc-sticky-bar-txt{font-family:'Crimson Pro',Georgia,serif;font-size:.8rem;font-weight:300;color:rgba(255,255,255,.8);letter-spacing:.3px;white-space:normal;line-height:1.45;flex:1;min-width:0}
+.sc-sticky-bar-txt strong{color:var(--gold-light);font-weight:400}
+.sc-sticky-bar-txt s{color:rgba(255,255,255,.35);font-size:.76rem}
+.sc-sticky-bar-btn{display:inline-block;font-family:'Crimson Pro',Georgia,serif;font-size:.76rem;font-weight:400;letter-spacing:.5px;padding:6px 15px;background:var(--gold);color:#fff !important;border:none;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .3s}
+.sc-sticky-bar-btn:hover{background:#a07d58}
+@media(max-width:420px){
+  .sc-sticky-bar{flex-direction:column;gap:6px;padding:9px 14px}
+  .sc-sticky-bar-txt{font-size:.74rem;text-align:center}
+  .sc-sticky-bar-btn{font-size:.73rem;padding:6px 20px;width:100%;text-align:center}
+}
+
+/* ============================================================
+   SOCIAL PROOF TOAST (gatillo 4)
+   ============================================================ */
+.sc-toast{position:fixed;bottom:80px;left:16px;z-index:9998;background:#fff;border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.10);padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:280px;transform:translateX(-110%);transition:transform .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.sc-toast.show{transform:translateX(-110%)}
+.sc-toast-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f3efe9,#e8e2d8);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.sc-toast-body{flex:1}
+.sc-toast-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:.82rem;font-weight:400;color:var(--black);font-style:italic;display:block;line-height:1.3}
+.sc-toast-action{font-size:.72rem;color:var(--text);opacity:.55;font-weight:300;display:block;line-height:1.3}
+.sc-toast-dot{width:7px;height:7px;border-radius:50%;background:#25D366;flex-shrink:0;align-self:flex-start;margin-top:4px}
+body{font-family:var(--ff-body);color:var(--text);line-height:1.75;overflow-x:hidden;font-weight:300}
+img{max-width:100%;height:auto;display:block}
+a{transition:all .3s ease}
+h1,h2,h3,h4{font-family:var(--ff-display);font-weight:400;line-height:1.2}
+section{padding:56px 20px}
+.sc-inner{max-width:1040px;margin:0 auto}
+.sc-inner-sm{max-width:740px;margin:0 auto}
+.sc-inner-md{max-width:900px;margin:0 auto}
+
+/* LABELS */
+.sc-label{display:block;text-align:center;font-size:.68rem;font-weight:300;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+
+/* BUTTONS */
+.sc-btn{display:inline-block;text-decoration:none !important;font-family:var(--ff-body);font-size:.95rem;font-weight:400;letter-spacing:.5px;padding:14px 32px;border:1px solid;transition:all .35s ease;text-align:center;cursor:pointer}
+.sc-btn-dark{background:var(--black);color:var(--white) !important;border-color:var(--black)}
+.sc-btn-dark:hover{background:transparent;color:var(--black) !important}
+.sc-btn-outline{background:transparent;color:var(--black) !important;border-color:rgba(10,10,10,.3)}
+.sc-btn-outline:hover{background:var(--black);color:var(--white) !important;border-color:var(--black)}
+.sc-btn-light{background:transparent;color:var(--white) !important;border-color:rgba(255,255,255,.35)}
+.sc-btn-light:hover{background:var(--white);color:var(--black) !important}
+.sc-btn-gold{background:var(--gold);color:var(--white) !important;border-color:var(--gold)}
+.sc-btn-gold:hover{background:#a07d58;border-color:#a07d58}
+.sc-btn-wa{background:#25D366;color:var(--white) !important;border-color:#25D366;display:inline-flex;align-items:center;gap:8px}
+.sc-btn-wa:hover{background:#1da954;border-color:#1da954}
+.sc-btn-block{display:block;width:100%}
+
+/* TITLES */
+.sc-title{font-size:2.4rem;text-align:center;color:var(--black);margin:0 0 10px;font-style:italic}
+.sc-subtitle{font-size:.93rem;text-align:center;color:var(--text);opacity:.6;font-weight:300;font-style:italic;margin:0 0 36px;max-width:580px;margin-left:auto;margin-right:auto}
+
+/* ANIMATIONS */
+@keyframes scFadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scShimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+@keyframes scPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* REVEAL */
+.sc-reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.sc-reveal.visible{opacity:1;transform:none}
+.sc-stagger>*{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.sc-stagger.visible>*:nth-child(1){transition-delay:.0s}
+.sc-stagger.visible>*:nth-child(2){transition-delay:.09s}
+.sc-stagger.visible>*:nth-child(3){transition-delay:.16s}
+.sc-stagger.visible>*:nth-child(4){transition-delay:.23s}
+.sc-stagger.visible>*:nth-child(5){transition-delay:.29s}
+.sc-stagger.visible>*:nth-child(6){transition-delay:.35s}
+.sc-stagger.visible>*:nth-child(7){transition-delay:.40s}
+.sc-stagger.visible>*{opacity:1;transform:none}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.sc-hero{background:linear-gradient(168deg,#fafaf8 0%,#f3efe9 100%);padding:80px 24px 0;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.sc-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 2px 2px,rgba(184,149,106,.065) 1px,transparent 0);background-size:34px 34px;pointer-events:none}
+.sc-hero::after{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(184,149,106,.08) 0%,transparent 68%);pointer-events:none}
+.sc-hero-inner{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.sc-hero-badge{display:inline-block;border:1px solid rgba(184,149,106,.5);color:var(--gold);font-size:.68rem;font-weight:300;font-style:italic;letter-spacing:2.5px;padding:6px 18px;margin-bottom:22px;text-transform:uppercase;animation:scFadeIn .7s ease both .1s}
+.sc-hero-ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px;animation:scFadeIn .7s ease both .2s}
+.sc-hero-ornament::before,.sc-hero-ornament::after{content:'';height:1px;width:52px;opacity:.45}
+.sc-hero-ornament::before{background:linear-gradient(90deg,transparent,var(--gold))}
+.sc-hero-ornament::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.sc-hero-ornament span{color:var(--gold);font-size:.5rem;letter-spacing:3px;opacity:.55}
+.sc-hero-h1{font-size:2.3rem;color:var(--black);margin:0 0 20px;font-weight:400}
+.sc-h1-line1{display:block;font-style:normal;animation:scFadeUp .85s ease both .3s}
+.sc-h1-line2{display:block;font-style:italic;background:linear-gradient(90deg,#b8956a 0%,#d4a574 45%,#b8956a 100%);background-size:220% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:scFadeUp .85s ease both .45s,scShimmer 4.5s ease 2s infinite}
+.sc-hero-sub{font-size:.98rem;line-height:1.85;color:var(--text);opacity:.72;font-weight:300;max-width:510px;margin:0 auto 14px;animation:scFadeUp .85s ease both .6s}
+.sc-hero-income{display:inline-block;background:rgba(184,149,106,.08);border:1px solid rgba(184,149,106,.2);padding:10px 20px;margin:0 auto 28px;font-family:var(--ff-display);font-size:.92rem;font-style:italic;color:var(--text);animation:scFadeUp .85s ease both .68s;max-width:520px}
+.sc-hero-income span{color:var(--gold);font-weight:400}
+.sc-hero-educator{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 28px;animation:scFadeUp .85s ease both .72s}
+.sc-hero-educator-avatar{width:40px;height:40px;border-radius:50%;border:2px solid var(--gold);background:#f0ede8;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;overflow:hidden}
+.sc-hero-educator-txt{text-align:left}
+.sc-hero-educator-txt strong{display:block;font-family:var(--ff-display);font-size:.95rem;font-style:italic;color:var(--black);font-weight:400}
+.sc-hero-educator-txt span{font-size:.78rem;font-weight:300;color:var(--text);opacity:.6;font-style:italic}
+.sc-hero-ctas{display:flex;flex-direction:column;gap:10px;margin:0 auto 36px;max-width:340px;animation:scFadeUp .85s ease both .8s}
+.sc-trust-bar{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 0;border-top:1px solid var(--border);animation:scFadeIn 1s ease both 1s}
+.sc-trust-item{display:flex;align-items:center;gap:7px;font-size:.8rem;font-weight:300;opacity:.7}
+.sc-trust-check{color:var(--gold);font-size:.75rem}
+
+/* ============================================================
+   RESULTADOS VISUALES
+   ============================================================ */
+.sc-resultados{background:var(--black);padding:56px 20px}
+.sc-resultados .sc-title{color:var(--white)}
+.sc-resultados .sc-subtitle{color:rgba(255,255,255,.45)}
+.sc-gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:28px}
+.sc-gallery-item{position:relative;overflow:hidden;background:#181818;aspect-ratio:3/4}
+.sc-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.sc-gallery-item:hover img{transform:scale(1.04)}
+.sc-gallery-ph{width:100%;height:100%;min-height:200px;background:#161616;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed #252525;padding:16px;text-align:center}
+.sc-gallery-ph-icon{font-size:1.8rem;opacity:.18}
+.sc-gallery-ph-label{font-size:.63rem;color:#3a3a3a;font-style:italic;letter-spacing:1px;line-height:1.6;max-width:120px}
+.sc-gallery-ph-tip{font-size:.58rem;color:#2a2a2a;background:#111;border:1px dashed #222;padding:4px 8px;margin-top:6px;line-height:1.55;text-align:center}
+.sc-gallery-tag{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(0deg,rgba(10,10,10,.88) 0%,transparent 100%)}
+.sc-gallery-tag span{font-size:.63rem;font-style:italic;letter-spacing:1px;color:var(--gold-light);border-left:2px solid var(--gold);padding-left:7px}
+.sc-resultados-bottom{text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)}
+.sc-resultados-bottom p{font-family:var(--ff-display);font-size:1.3rem;font-style:italic;color:rgba(255,255,255,.65);margin:0 0 18px;line-height:1.45}
+
+/* ============================================================
+   PARA QUIEN
+   ============================================================ */
+.sc-pq{background:var(--white);border-bottom:1px solid var(--border)}
+.sc-pq-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:24px}
+.sc-pq-item{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border:1px solid var(--border);background:var(--bg);transition:all .3s}
+.sc-pq-item:hover{border-color:var(--gold);background:var(--white)}
+.sc-pq-icon{width:28px;height:28px;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;margin-top:2px}
+.sc-pq-txt strong{display:block;font-family:var(--ff-display);font-size:1.05rem;font-style:italic;color:var(--black);margin-bottom:3px}
+.sc-pq-txt span{font-size:.85rem;font-weight:300;color:var(--text);opacity:.72;line-height:1.55}
+.sc-pq-no{border:1px solid var(--border);background:var(--bg);padding:20px 20px}
+.sc-pq-no p{font-family:var(--ff-display);font-size:1rem;font-style:italic;color:var(--text);opacity:.55;margin:0 0 12px}
+.sc-pq-no ul{list-style:none;padding:0;margin:0}
+.sc-pq-no ul li{padding:6px 0 6px 22px;position:relative;border-bottom:1px solid var(--border);font-size:.86rem;font-weight:300;color:var(--text);opacity:.6}
+.sc-pq-no ul li:last-child{border-bottom:none}
+.sc-pq-no ul li::before{content:'✗';position:absolute;left:0;color:#e57373;opacity:.7}
+
+/* ============================================================
+   EDUCADORA
+   ============================================================ */
+.sc-edu{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sc-edu-wrap{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);background:var(--white);overflow:hidden}
+.sc-edu-img{background:#f0ede8;min-height:280px;position:relative}
+.sc-edu-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sc-edu-ph{width:100%;height:100%;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center}
+.sc-edu-ph-icon{font-size:3rem;opacity:.2}
+.sc-edu-ph-txt{font-size:.7rem;color:#b0a090;font-style:italic;letter-spacing:1px;line-height:1.6}
+.sc-edu-ph-tip{font-size:.63rem;color:#c4b4a4;background:#ede8e2;padding:6px 12px;margin-top:4px;line-height:1.6}
+.sc-edu-body{padding:32px 24px}
+.sc-edu-body .sc-label{text-align:left}
+.sc-edu-name{font-size:2.1rem;font-style:italic;color:var(--black);margin:4px 0 2px}
+.sc-edu-role{font-size:.8rem;color:var(--gold);font-style:italic;font-weight:300;margin:0 0 16px;display:block}
+.sc-edu-bio{font-size:.94rem;line-height:1.82;font-weight:300;color:var(--text);margin:0 0 20px}
+.sc-edu-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--border);margin-bottom:18px}
+.sc-edu-stat{padding:14px 8px;text-align:center;background:var(--bg)}
+.sc-edu-stat-n{display:block;font-family:var(--ff-display);font-size:1.65rem;font-style:italic;color:var(--gold);line-height:1;margin-bottom:3px}
+.sc-edu-stat-l{font-size:.62rem;font-weight:300;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);opacity:.5}
+.sc-edu-creds{display:flex;flex-direction:column;gap:7px}
+.sc-edu-cred{display:flex;align-items:center;gap:9px;font-size:.84rem;font-weight:300;color:var(--text)}
+.sc-edu-cred span:first-child{color:var(--gold);flex-shrink:0}
+
+/* ============================================================
+   QUE APRENDERAS
+   ============================================================ */
+.sc-aprende{background:var(--white);border-top:1px solid var(--border)}
+.sc-aprende-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:32px}
+.sc-aprende-item{display:flex;align-items:flex-start;gap:16px;padding:17px 20px;border:1px solid var(--border);transition:all .3s}
+.sc-aprende-item:hover{border-color:var(--gold);background:var(--bg)}
+.sc-aprende-num{font-family:var(--ff-display);font-size:1.7rem;font-style:italic;color:var(--gold);opacity:.3;line-height:1;flex-shrink:0;width:30px;text-align:right}
+.sc-aprende-txt strong{display:block;font-family:var(--ff-display);font-size:1.05rem;font-style:italic;color:var(--black);margin-bottom:3px}
+.sc-aprende-txt span{font-size:.84rem;font-weight:300;color:var(--text);opacity:.72;line-height:1.55}
+.sc-aprende-cta{text-align:center;padding-top:8px}
+.sc-aprende-cta p{font-family:var(--ff-display);font-size:1.2rem;font-style:italic;color:var(--text);opacity:.7;margin:0 0 16px}
+
+/* ============================================================
+   MODULOS
+   ============================================================ */
+.sc-modulos{background:var(--bg);border-top:1px solid var(--border)}
+.sc-mod-grid{display:grid;grid-template-columns:1fr;gap:7px;margin-bottom:20px}
+.sc-mod-item{background:var(--white);border:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:14px;transition:all .3s}
+.sc-mod-item:hover{border-color:var(--gold)}
+.sc-mod-num{font-family:var(--ff-display);font-size:1.3rem;font-style:italic;color:var(--gold);opacity:.4;flex-shrink:0;width:28px;text-align:right;line-height:1}
+.sc-mod-content strong{display:block;font-family:var(--ff-display);font-size:1rem;font-style:italic;color:var(--black);margin-bottom:2px}
+.sc-mod-content span{font-size:.8rem;font-weight:300;color:var(--text);opacity:.65;line-height:1.45}
+.sc-mod-practica{background:var(--black);border:none;padding:18px 20px}
+.sc-mod-practica .sc-mod-num{color:var(--gold);opacity:.7}
+.sc-mod-practica strong{color:var(--white) !important}
+.sc-mod-practica span{color:rgba(255,255,255,.55) !important;opacity:1 !important}
+.sc-mod-total{text-align:center;padding:16px;border:1px solid var(--border);background:var(--white);margin-top:4px}
+.sc-mod-total p{font-family:var(--ff-display);font-size:1.05rem;font-style:italic;color:var(--text);opacity:.65;margin:0}
+.sc-mod-total span{color:var(--gold)}
+
+/* ============================================================
+   TESTIMONIOS
+   ============================================================ */
+.sc-testi{background:var(--white);border-top:1px solid var(--border)}
+.sc-testi-featured{display:grid;grid-template-columns:1fr;gap:0;margin-bottom:18px;border:1px solid var(--border);overflow:hidden}
+.sc-testi-img{background:#f0ede8;min-height:220px}
+.sc-testi-img img{width:100%;height:100%;object-fit:cover;display:block}
+.sc-testi-img-ph{width:100%;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center}
+.sc-testi-img-ph-icon{font-size:2.2rem;opacity:.28}
+.sc-testi-img-ph-txt{font-size:.67rem;color:#b0a090;font-style:italic;letter-spacing:1px;line-height:1.6}
+.sc-testi-img-ph-tip{font-size:.6rem;color:#c4b4a4;background:#ede8e2;padding:5px 10px;margin-top:4px;line-height:1.5}
+.sc-testi-body{padding:28px 22px;display:flex;flex-direction:column;justify-content:center}
+.sc-stars{color:var(--gold);font-size:.88rem;letter-spacing:2px;margin-bottom:10px}
+.sc-testi-body h3{font-size:1.55rem;font-style:italic;color:var(--black);margin:0 0 2px}
+.sc-testi-role{font-size:.78rem;color:var(--gold);font-style:italic;font-weight:300;margin:0 0 14px;display:block}
+.sc-testi-body p{font-size:.94rem;line-height:1.78;font-weight:300;color:var(--text);margin:0 0 10px}
+.sc-testi-hl{font-style:italic !important;color:var(--gold) !important;padding-left:14px;border-left:3px solid var(--gold);margin:14px 0 !important}
+.sc-testi-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:20px}
+.sc-testi-card{background:var(--bg);padding:20px 18px;border:1px solid var(--border);transition:all .3s;display:flex;flex-direction:column}
+.sc-testi-card:hover{border-color:var(--gold);background:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.05)}
+.sc-testi-ph{width:48px;height:48px;border-radius:50%;background:#f0ede8;border:2px dashed #d4c4b0;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:1.1rem;opacity:.45}
+.sc-testi-quote{font-style:italic;font-size:.93rem;line-height:1.72;font-weight:300;flex:1;margin:0 0 12px;opacity:.88}
+.sc-testi-author{padding-top:10px;border-top:1px solid var(--border);font-size:.78rem}
+.sc-testi-author strong{display:block;font-family:var(--ff-display);font-size:.92rem;font-style:italic;margin-bottom:2px;color:var(--black)}
+.sc-testi-author span{font-style:italic;opacity:.5;font-weight:300}
+
+/* ============================================================
+   CERTIFICACION
+   ============================================================ */
+.sc-cert{background:linear-gradient(168deg,#0f0d0b 0%,#1c1510 100%);padding:56px 20px;border-top:1px solid rgba(255,255,255,.05)}
+.sc-cert .sc-title{color:var(--white)}
+.sc-cert .sc-subtitle{color:rgba(255,255,255,.4)}
+.sc-cert-card{max-width:500px;margin:0 auto 28px;border:1px solid rgba(184,149,106,.22);padding:36px 28px;text-align:center;position:relative;background:rgba(255,255,255,.02)}
+.sc-cert-card::before{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(184,149,106,.08);pointer-events:none}
+.sc-cert-icon{font-size:2.4rem;margin-bottom:14px;opacity:.55;display:block}
+.sc-cert-ph{width:100%;max-width:340px;margin:0 auto 20px;border:1px dashed rgba(184,149,106,.18);padding:26px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.sc-cert-ph-icon{font-size:2.6rem;opacity:.18}
+.sc-cert-ph-txt{font-size:.68rem;color:rgba(184,149,106,.38);font-style:italic;letter-spacing:1.5px;line-height:1.6;text-align:center}
+.sc-cert-ph-tip{font-size:.6rem;color:rgba(184,149,106,.28);border:1px dashed rgba(184,149,106,.14);padding:5px 10px;line-height:1.5;text-align:center}
+.sc-cert-name{font-family:var(--ff-display);font-size:1.65rem;font-style:italic;color:var(--gold-light);margin:0 0 4px}
+.sc-cert-sub{font-size:.72rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin:0 0 20px}
+.sc-cert-feats{display:flex;flex-direction:column;gap:9px;max-width:440px;margin:0 auto}
+.sc-cert-feat{display:flex;align-items:center;gap:12px;padding:11px 16px;border:1px solid rgba(184,149,106,.13);background:rgba(255,255,255,.02)}
+.sc-cert-feat-icon{color:var(--gold);font-size:.85rem;flex-shrink:0}
+.sc-cert-feat p{font-size:.86rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.6);margin:0;line-height:1.45}
+
+/* ============================================================
+   VALOR DEL SERVICIO
+   ============================================================ */
+.sc-valor{background:var(--white);border-top:1px solid var(--border)}
+.sc-valor-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.sc-valor-item{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;border:1px solid var(--border);transition:all .3s}
+.sc-valor-item:hover{border-color:var(--gold);background:var(--bg)}
+.sc-valor-icon{width:38px;height:38px;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.sc-valor-txt strong{display:block;font-family:var(--ff-display);font-size:1.05rem;font-style:italic;color:var(--black);margin-bottom:4px}
+.sc-valor-txt span{font-size:.84rem;font-weight:300;color:var(--text);opacity:.72;line-height:1.55}
+
+/* ============================================================
+   PRICING — TRES PRODUCTOS
+   ============================================================ */
+.sc-pricing{background:var(--bg);border-top:1px solid var(--border)}
+#sc-programas{scroll-margin-top:60px}
+.sc-pricing-intro{text-align:center;margin-bottom:32px}
+
+/* CURSO ONLINE — card principal */
+.sc-main-card{background:var(--white);border:1px solid var(--border);padding:32px 26px;margin-bottom:16px;position:relative}
+.sc-main-card-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.sc-main-card-left .sc-ptype{font-size:.65rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);font-weight:300;display:block;margin-bottom:6px}
+.sc-main-card-left h3{font-size:2rem;font-style:italic;color:var(--black);margin:0 0 4px}
+.sc-main-card-left p{font-size:.86rem;font-weight:300;color:var(--text);opacity:.6;font-style:italic;margin:0;max-width:340px;line-height:1.55}
+.sc-main-price{text-align:right}
+.sc-main-price-amount{display:block;font-family:var(--ff-display);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.sc-main-price-sub{font-size:.72rem;color:#bbb;font-style:italic;display:block;margin-top:4px}
+.sc-main-features{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:24px}
+.sc-feat-row{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:300;padding:8px 0;border-bottom:1px solid var(--border)}
+.sc-feat-row:last-child{border-bottom:none}
+.sc-feat-row span:first-child{color:var(--gold);flex-shrink:0}
+.sc-main-cta-wrap{display:flex;flex-direction:column;gap:10px;align-items:center}
+.sc-main-cta-note{font-size:.75rem;font-style:italic;color:var(--text);opacity:.45;text-align:center}
+/* MASTERCLASS FOOTNOTE */
+.sc-masterclass-note{background:linear-gradient(135deg,#b8956a 0%,#c9a87c 50%,#b8956a 100%);border:1px solid #a07d58;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.sc-masterclass-note-left .sc-ptype{font-size:.63rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.9);font-weight:300;display:block;margin-bottom:4px}
+.sc-masterclass-note-left h4{font-size:1.3rem;font-style:italic;color:var(--black);margin:0 0 4px}
+.sc-masterclass-note-left p{font-size:.83rem;font-weight:300;color:rgba(255,255,255,.9);font-style:italic;margin:0;line-height:1.5}
+.sc-masterclass-note-right{text-align:right;flex-shrink:0}
+.sc-masterclass-price{font-family:var(--ff-display);font-size:1.6rem;font-style:italic;color:var(--black);display:block}
+.sc-masterclass-price-sub{font-size:.68rem;color:rgba(255,255,255,.85);font-style:italic;display:block;margin-bottom:10px}
+.sc-cupos-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-style:italic;margin-top:8px}
+.sc-cupos-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:scPulse 2s infinite}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.sc-faqs{background:var(--bg);border-top:1px solid var(--border)}
+.sc-faq-item{background:var(--white);border:1px solid var(--border);margin-bottom:6px;overflow:hidden;transition:border-color .3s}
+.sc-faq-item.open{border-color:var(--gold)}
+.sc-faq-q{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;user-select:none}
+.sc-faq-q:hover{background:var(--bg)}
+.sc-faq-q-txt{font-family:var(--ff-display);font-size:1.05rem;font-style:italic;color:var(--black);flex:1;line-height:1.35}
+.sc-faq-icon{width:24px;height:24px;border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;transition:all .3s}
+.sc-faq-item.open .sc-faq-icon{background:var(--gold);border-color:var(--gold);color:var(--white);transform:rotate(45deg)}
+.sc-faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 20px}
+.sc-faq-item.open .sc-faq-a{max-height:500px;padding:0 20px 20px}
+.sc-faq-a p{font-size:.91rem;line-height:1.78;font-weight:300;color:var(--text);margin:0 0 8px}
+.sc-faq-a p:last-child{margin-bottom:0}
+.sc-faq-a strong{font-weight:400;color:var(--black)}
+.sc-faqs-bottom{text-align:center;margin-top:24px;padding:24px 20px;background:var(--white);border:1px solid var(--border)}
+.sc-faqs-bottom p{font-family:var(--ff-display);font-size:1.25rem;font-style:italic;color:var(--black);margin:0 0 16px}
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+.sc-cta{background:var(--black);padding:72px 20px;text-align:center;color:var(--white)}
+.sc-cta .sc-label{color:var(--gold)}
+.sc-cta-title{font-family:var(--ff-display);font-size:2.3rem;font-style:italic;color:var(--white);margin:0 0 16px;line-height:1.3}
+.sc-cta-lead{font-size:.98rem;line-height:1.88;font-weight:300;font-style:italic;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 32px}
+.sc-urgency{display:inline-flex;align-items:center;gap:8px;background:rgba(184,149,106,.09);border:1px solid rgba(184,149,106,.2);padding:10px 18px;margin-bottom:28px;font-size:.78rem;font-style:italic;color:var(--gold-light)}
+.sc-urgency-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:scPulse 2s infinite;flex-shrink:0}
+.sc-cta-btns{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto 48px}
+.sc-cta-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.07);padding-top:40px}
+.sc-cta-stat{flex:1;padding:16px 12px;border-right:1px solid rgba(255,255,255,.07);min-width:100px;max-width:200px}
+.sc-cta-stat:last-child{border-right:none}
+.sc-stat-n{display:block;font-family:var(--ff-display);font-size:2.1rem;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:4px}
+.sc-stat-l{font-size:.7rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.38)}
+
+/* SCREENSHOT TESTIMONIALS */
+.sc-ss-section{background:var(--black);padding:64px 0 72px;overflow:hidden;border-top:1px solid rgba(184,149,106,.12)}
+.sc-ss-header{text-align:center;padding:0 20px 44px;max-width:560px;margin:0 auto}
+.sc-ss-eyebrow{font-size:.63rem;text-transform:uppercase;letter-spacing:3px;color:var(--gold);font-weight:300;display:block;margin-bottom:12px}
+.sc-ss-title{font-family:var(--ff-display);font-size:2rem;font-style:italic;font-weight:300;color:var(--white);margin:0 0 10px;line-height:1.2}
+.sc-ss-sub{font-size:.85rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.38);margin:0;line-height:1.6}
+.sc-ss-track-wrap{overflow:hidden;margin-bottom:12px;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
+.sc-ss-track{display:flex;gap:12px;width:max-content;will-change:transform}
+.sc-ss-track-a{animation:scSSLeft 40s linear infinite}
+.sc-ss-track-b{animation:scSSRight 50s linear infinite}
+.sc-ss-track:hover{animation-play-state:paused}
+@keyframes scSSLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scSSRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.sc-ss-card{flex-shrink:0;width:180px;border-radius:10px;overflow:hidden;border:1px solid rgba(184,149,106,.18);background:#111;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.sc-ss-card img{width:100%;height:100%;object-fit:cover;display:block}
+.sc-ss-card-ph{width:180px;height:280px;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed rgba(184,149,106,.15);border-radius:10px;flex-shrink:0}
+.sc-ss-card-ph-icon{font-size:1.4rem;opacity:.15;color:var(--gold)}
+.sc-ss-card-ph-txt{font-size:.58rem;color:rgba(255,255,255,.15);font-style:italic;text-align:center;line-height:1.5;padding:0 12px}
+.sc-ss-cta{text-align:center;margin-top:40px;padding:0 20px}
+.sc-ss-cta p{font-size:.8rem;font-style:italic;color:rgba(255,255,255,.28);margin:12px 0 0}
+@media(min-width:640px){.sc-ss-card,.sc-ss-card-ph{width:210px}.sc-ss-card-ph{height:320px}.sc-ss-title{font-size:2.4rem}}
+
+/* FOOTER */
+.sc-footer{background:var(--black);padding:32px 20px 20px;border-top:1px solid rgba(255,255,255,.06)}
+.sc-footer-inner{max-width:1040px;margin:0 auto;text-align:center}
+.sc-footer-brand{font-family:var(--ff-display);font-size:1.4rem;font-style:italic;color:var(--gold);margin-bottom:10px}
+.sc-footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+.sc-footer-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.78rem;font-style:italic;font-weight:300;transition:color .3s}
+.sc-footer-links a:hover{color:var(--gold)}
+.sc-footer-copy{font-size:.68rem;color:rgba(255,255,255,.25);font-style:italic}
+
+/* WA FLOAT */
+.sc-wa-float{position:fixed;bottom:24px;right:20px;z-index:999;transition:transform .3s;text-decoration:none !important}
+.sc-wa-float:hover{transform:scale(1.08)}
+.sc-wa-btn{width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.32)}
+
+/* MODAL */
+.sc-modal-ov{display:none;position:fixed;inset:0;background:rgba(10,10,10,.8);backdrop-filter:blur(4px);z-index:9999;overflow-y:auto;padding:20px;align-items:flex-start;justify-content:center}
+.sc-modal-ov.open{display:flex}
+.sc-modal{background:var(--white);width:100%;max-width:560px;padding:32px 24px;position:relative;margin:auto;border-top:3px solid var(--gold);animation:scFadeUp .35s ease}
+.sc-modal-close{position:absolute;top:14px;right:18px;font-size:1.8rem;font-weight:200;color:#aaa;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
+.sc-modal-close:hover{color:var(--black)}
+.sc-modal-label{font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:6px;display:block}
+.sc-modal-title{font-family:var(--ff-display);font-size:1.85rem;font-style:italic;color:var(--black);margin:0 0 6px}
+.sc-modal-sub{font-size:.84rem;color:#777;font-style:italic;font-weight:300;line-height:1.55;margin:0 0 20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.sc-form{display:flex;flex-direction:column;gap:13px}
+.sc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sc-form-g{display:flex;flex-direction:column;gap:5px}
+.sc-form-g label{font-size:.78rem;font-weight:400;font-style:italic;color:var(--black)}
+.sc-form-g input,.sc-form-g select,.sc-form-g textarea{padding:9px 11px;border:1px solid #e0ddd7;background:var(--bg);font-family:var(--ff-body);font-size:.87rem;font-weight:300;color:var(--black);transition:border-color .3s;-webkit-appearance:none;border-radius:0}
+.sc-form-g input:focus,.sc-form-g select:focus,.sc-form-g textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
+.sc-form-g textarea{resize:vertical;min-height:80px;line-height:1.55}
+.sc-form-submit{background:var(--black);color:var(--white);border:1px solid var(--black);padding:13px;font-family:var(--ff-body);font-size:.93rem;font-style:italic;cursor:pointer;transition:all .35s;width:100%;margin-top:4px}
+.sc-form-submit:hover{background:transparent;color:var(--black)}
+.sc-form-note{text-align:center;font-size:.73rem;font-style:italic;color:#bbb;margin-top:2px}
+
+/* RESPONSIVE */
+@media(min-width:580px){
+  .sc-hero-h1{font-size:3.1rem}
+  .sc-hero-ctas{flex-direction:row;max-width:none;justify-content:center}
+  .sc-trust-bar{flex-direction:row;justify-content:center;gap:24px}
+  .sc-gallery-grid{grid-template-columns:repeat(3,1fr)}
+  .sc-pq-grid{grid-template-columns:1fr 1fr}
+  .sc-aprende-grid{grid-template-columns:1fr 1fr}
+  .sc-mod-grid{grid-template-columns:1fr 1fr}
+  .sc-testi-grid{grid-template-columns:1fr 1fr}
+  .sc-cert-feats{flex-direction:row;flex-wrap:wrap}
+  .sc-cert-feat{flex:1;min-width:180px}
+  .sc-valor-grid{grid-template-columns:repeat(3,1fr)}
+  .sc-main-features{grid-template-columns:1fr 1fr}
+  .sc-main-cta-wrap{flex-direction:row;justify-content:center}
+  .sc-cta-btns{flex-direction:row;max-width:none;justify-content:center}
+  .sc-form-row{grid-template-columns:1fr 1fr}
+}
+@media(min-width:768px){
+  .sc-hero-h1{font-size:3.7rem}
+  .sc-title{font-size:2.6rem}
+  .sc-edu-wrap{grid-template-columns:1fr 1.5fr}
+  .sc-edu-img{min-height:360px}
+  .sc-testi-featured{grid-template-columns:1fr 1.4fr}
+  .sc-testi-img{min-height:280px}
+  .sc-aprende-grid{grid-template-columns:repeat(3,1fr)}
+  .sc-mod-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1020px){
+  .sc-hero-h1{font-size:4.1rem}
+}
+
+/* PRICING GRID — 3 columnas alineadas */
+.sc-pricing-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:820px){.sc-pricing-grid{grid-template-columns:1fr 1fr 1fr;align-items:stretch}}
+.sc-pricing-grid .sc-main-card{margin-bottom:0;display:flex;flex-direction:column}
+.sc-pricing-grid .sc-main-features{flex:1}
+
+/* ============================================================
+   DECISION 6 MESES
+   ============================================================ */
+.sc-decision{background:var(--bg);border-top:1px solid var(--border);padding:56px 20px}
+.sc-decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px}
+.sc-decision-col{padding:32px 28px}
+.sc-decision-yes{background:var(--black)}
+.sc-decision-no{background:var(--white);border:1px solid var(--border)}
+.sc-decision-head{margin-bottom:22px}
+.sc-decision-badge{font-size:.62rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;padding:4px 12px}
+.sc-decision-badge-yes{background:var(--gold);color:var(--white)}
+.sc-decision-badge-no{background:var(--border);color:#888}
+.sc-decision-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+.sc-decision-dot{width:18px;height:18px;border:1.5px solid;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;margin-top:3px}
+.sc-decision-dot-yes{border-color:var(--gold);color:var(--gold)}
+.sc-decision-dot-no{border-color:#ccc;color:#bbb}
+.sc-decision-txt{font-size:.88rem;line-height:1.65;font-weight:300}
+.sc-decision-yes .sc-decision-txt{color:rgba(255,255,255,.75)}
+.sc-decision-no .sc-decision-txt{color:var(--text);opacity:.75}
+.sc-decision-txt strong{display:block;font-family:var(--ff-display);font-size:1.05rem;font-style:italic;font-weight:400;margin-bottom:2px}
+.sc-decision-yes .sc-decision-txt strong{color:var(--white)}
+.sc-decision-no .sc-decision-txt strong{color:var(--black)}
+@media(max-width:640px){.sc-decision-grid{grid-template-columns:1fr}}
+
+.sc-mc-feats{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.sc-mc-feat{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;font-weight:300;line-height:1.5;color:rgba(0,0,0,.75)}
+.sc-mc-feat strong{font-weight:400;font-family:var(--ff-display);font-style:italic}
+.sc-mc-icon{color:var(--black);font-size:.7rem;flex-shrink:0;margin-top:3px;opacity:.5}
+.sc-mc-bono .sc-mc-icon{color:var(--black);opacity:.7}
+.sc-mc-bono{border-top:1px solid rgba(0,0,0,.1);padding-top:7px;margin-top:2px}
+
+/* ============================================================
+   SC ACADEMY V2 — CONVERSION LAYER
+   ============================================================ */
+.sc-proof-strip{background:var(--black);color:#fff;padding:24px 20px;border-top:1px solid rgba(184,149,106,.15);border-bottom:1px solid rgba(184,149,106,.15)}
+.sc-proof-grid{max-width:1040px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08)}
+.sc-proof-item{background:var(--black);padding:14px 10px;text-align:center}
+.sc-proof-n{display:block;font-family:var(--ff-display);font-size:1.75rem;color:var(--gold-light);line-height:1;margin-bottom:4px}
+.sc-proof-l{font-size:.65rem;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.48)}
+.sc-benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.sc-benefit{padding:22px;border:1px solid var(--border);background:var(--white)}
+.sc-benefit-icon{font-size:1.15rem;color:var(--gold);margin-bottom:10px;display:block}
+.sc-benefit h3{font-size:1.2rem;font-style:italic;margin-bottom:6px;color:var(--black)}
+.sc-benefit p{font-size:.86rem;line-height:1.6;color:var(--text);opacity:.68;margin:0}
+.sc-offer-wrap{max-width:820px;margin:0 auto}
+.sc-offer-main{border:1px solid var(--gold);background:var(--white);box-shadow:0 14px 50px rgba(0,0,0,.06);padding:34px}
+.sc-offer-top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.sc-offer-kicker{font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
+.sc-offer-main h3{font-size:2.15rem;font-style:italic;margin:0 0 5px;color:var(--black)}
+.sc-offer-main .sc-offer-desc{font-size:.9rem;color:var(--text);opacity:.65;max-width:470px;line-height:1.6;margin:0}
+.sc-offer-price{text-align:right;min-width:150px}
+.sc-offer-old{display:block;font-size:.78rem;color:#aaa;text-decoration:line-through}
+.sc-offer-price strong{display:block;font-family:var(--ff-display);font-size:3rem;color:var(--gold);font-weight:300;line-height:1}
+.sc-offer-price span{font-size:.7rem;color:#aaa;font-style:italic}
+.sc-offer-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin:0 0 24px}
+.sc-offer-list div{padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem}
+.sc-offer-list div::before{content:'✓';color:var(--gold);margin-right:9px}
+.sc-offer-note{text-align:center;font-size:.74rem;color:#999;font-style:italic;margin-top:10px}
+.sc-secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.sc-secondary{background:var(--black);color:#fff;padding:22px;border-left:3px solid var(--gold)}
+.sc-secondary h4{font-size:1.25rem;font-style:italic;color:#fff;margin:0 0 5px}
+.sc-secondary p{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.55;margin:0 0 14px}
+.sc-secondary-price{font-family:var(--ff-display);font-size:1.5rem;color:var(--gold-light)}
+.sc-secondary small{display:block;color:rgba(255,255,255,.3);font-size:.67rem;margin-top:2px}
+.sc-decision-intro{max-width:620px;margin:0 auto 28px;text-align:center}
+.sc-decision-intro p{font-size:.9rem;color:var(--text);opacity:.65;line-height:1.7}
+.sc-mobile-buy{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:9997;background:var(--black);padding:8px;border:1px solid rgba(184,149,106,.45);box-shadow:0 8px 28px rgba(0,0,0,.22)}
+.sc-mobile-buy a{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--gold);color:#fff;text-decoration:none;padding:11px 14px;font-family:var(--ff-body);font-size:.9rem}
+@media(max-width:700px){
+ .sc-proof-grid{grid-template-columns:1fr 1fr}
+ .sc-benefit-grid,.sc-secondary-grid{grid-template-columns:1fr}
+ .sc-offer-main{padding:24px 18px}
+ .sc-offer-top{flex-direction:column}
+ .sc-offer-price{text-align:left}
+ .sc-offer-list{grid-template-columns:1fr}
+ .sc-mobile-buy{display:block}
+ body{padding-bottom:72px}
+}
+
+
+/* ============================================================
+   SC ACADEMY V3 — VISUAL POLISH
+   ============================================================ */
+:root{
+  --gold-deep:#9f7950;
+  --cream:#f7f3ed;
+  --shadow-soft:0 18px 55px rgba(24,18,12,.08);
+  --shadow-gold:0 18px 55px rgba(184,149,106,.16);
+}
+body{
+  background:var(--bg);
+}
+.sc-hero{
+  min-height:680px;
+  display:flex;
+  align-items:flex-end;
+  padding-top:110px;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(184,149,106,.14),transparent 30%),
+    linear-gradient(145deg,#fff 0%,#f8f4ee 52%,#eee7dd 100%);
+}
+.sc-hero-inner{
+  padding-bottom:18px;
+}
+.sc-hero-badge{
+  background:rgba(255,255,255,.58);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 30px rgba(0,0,0,.04);
+}
+.sc-hero-h1{
+  letter-spacing:-.025em;
+}
+.sc-hero-sub{
+  font-size:1.04rem;
+}
+.sc-hero-income{
+  box-shadow:0 10px 35px rgba(184,149,106,.08);
+  background:rgba(255,255,255,.55);
+}
+.sc-hero-ctas .sc-btn{
+  min-height:50px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+.sc-hero-ctas .sc-btn-gold{
+  box-shadow:0 12px 32px rgba(184,149,106,.25);
+}
+.sc-trust-bar{
+  background:rgba(255,255,255,.35);
+  backdrop-filter:blur(6px);
+}
+.sc-proof-strip{
+  position:relative;
+  overflow:hidden;
+}
+.sc-proof-strip::before{
+  content:'';
+  position:absolute;
+  width:520px;height:520px;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(184,149,106,.08),transparent 65%);
+  pointer-events:none;
+}
+.sc-proof-grid{
+  position:relative;
+  z-index:1;
+  border:1px solid rgba(184,149,106,.16);
+  box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+.sc-benefit{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,.035);
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.sc-benefit::after{
+  content:'';
+  position:absolute;
+  width:100px;height:100px;
+  right:-35px;top:-35px;
+  border-radius:50%;
+  background:rgba(184,149,106,.07);
+}
+.sc-benefit:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-gold);
+  border-color:rgba(184,149,106,.45);
+}
+.sc-resultados{
+  position:relative;
+  overflow:hidden;
+}
+.sc-resultados::before{
+  content:'';
+  position:absolute;
+  width:500px;height:500px;
+  left:-220px;top:-220px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(184,149,106,.12),transparent 68%);
+}
+.sc-resultados .sc-inner{
+  position:relative;
+  z-index:1;
+}
+.sc-gallery-item{
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+.sc-pq-item,.sc-aprende-item,.sc-valor-item,.sc-testi-card{
+  box-shadow:0 5px 20px rgba(0,0,0,.025);
+}
+.sc-edu-wrap{
+  box-shadow:var(--shadow-soft);
+}
+.sc-edu-img{
+  position:relative;
+}
+.sc-edu-img::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  box-shadow:inset 0 0 0 1px rgba(184,149,106,.18);
+  pointer-events:none;
+}
+.sc-mod-item{
+  border-radius:2px;
+  box-shadow:0 4px 16px rgba(0,0,0,.025);
+}
+.sc-testi-featured{
+  box-shadow:var(--shadow-soft);
+}
+.sc-cert{
+  position:relative;
+  overflow:hidden;
+}
+.sc-cert::before{
+  content:'';
+  position:absolute;
+  width:420px;height:420px;
+  right:-180px;top:-180px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(184,149,106,.16),transparent 68%);
+}
+.sc-cert .sc-inner{
+  position:relative;
+  z-index:1;
+}
+.sc-offer-wrap{
+  max-width:900px;
+}
+.sc-offer-main{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(184,149,106,.7);
+  box-shadow:0 24px 70px rgba(44,31,19,.11);
+  border-radius:3px;
+  background:
+    linear-gradient(145deg,#fff 0%,#fff 72%,#faf5ee 100%);
+}
+.sc-offer-main::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-light),var(--gold-deep));
+}
+.sc-offer-price{
+  padding:12px 16px;
+  border-left:1px solid var(--border);
+}
+.sc-offer-price strong{
+  text-shadow:0 8px 25px rgba(184,149,106,.2);
+}
+.sc-offer-list div{
+  transition:background .25s ease,padding-left .25s ease;
+}
+.sc-offer-list div:hover{
+  background:rgba(184,149,106,.055);
+  padding-left:5px;
+}
+.sc-secondary-grid.sc-masterclass-only{
+  display:flex;
+  justify-content:center;
+}
+.sc-secondary-grid.sc-masterclass-only .sc-secondary{
+  width:min(100%,650px);
+  border:1px solid rgba(184,149,106,.22);
+  border-left:4px solid var(--gold);
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.sc-secondary-grid.sc-masterclass-only .sc-secondary:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-gold);
+}
+.sc-decision{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(184,149,106,.07),transparent 32%),
+    var(--bg);
+}
+.sc-decision-col{
+  box-shadow:0 10px 35px rgba(0,0,0,.045);
+}
+.sc-faq-item{
+  box-shadow:0 4px 15px rgba(0,0,0,.025);
+}
+.sc-cta{
+  position:relative;
+  overflow:hidden;
+}
+.sc-cta::before,.sc-cta::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+.sc-cta::before{
+  width:420px;height:420px;
+  left:-220px;top:-230px;
+  background:radial-gradient(circle,rgba(184,149,106,.13),transparent 68%);
+}
+.sc-cta::after{
+  width:360px;height:360px;
+  right:-190px;bottom:-210px;
+  background:radial-gradient(circle,rgba(184,149,106,.09),transparent 68%);
+}
+.sc-cta .sc-inner{
+  position:relative;
+  z-index:1;
+}
+.sc-cta-btns .sc-btn{
+  min-height:50px;
+  box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+.sc-mobile-buy{
+  backdrop-filter:blur(10px);
+}
+@media(max-width:700px){
+  .sc-hero{
+    min-height:auto;
+    padding-top:94px;
+  }
+  .sc-hero-h1{font-size:2.45rem}
+  .sc-hero-sub{font-size:.95rem}
+  .sc-hero-income{font-size:.88rem}
+  .sc-benefit-grid{gap:8px}
+  .sc-benefit{padding:19px}
+  .sc-offer-main{
+    box-shadow:0 15px 45px rgba(44,31,19,.09);
+  }
+  .sc-offer-price{
+    border-left:0;
+    border-top:1px solid var(--border);
+    padding-left:0;
+    padding-top:16px;
+    width:100%;
+  }
+  .sc-secondary-grid.sc-masterclass-only .sc-secondary{
+    width:100%;
+  }
+}
+@media(min-width:768px){
+  .sc-hero-inner{padding-bottom:28px}
+  .sc-offer-main{padding:40px}
+}
+
+
+/* SC ACADEMY V5 — typography */
+:root{--ff-display:'Cormorant Garamond',Georgia,serif;--ff-body:'Inter',Arial,sans-serif;--text:#242424}
+body{font-family:var(--ff-body);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6,.sc-hero h1,.sc-section-title,.sc-section h2{font-family:var(--ff-display);font-weight:500;letter-spacing:-.02em;line-height:1.02}
+p,li,small,label,.sc-sticky-bar-txt,.sc-nav,.sc-btn,button,input,textarea,select{font-family:var(--ff-body)}
+p,li{line-height:1.65}.sc-btn,button{font-weight:600;letter-spacing:.01em}.sc-sticky-bar-txt{letter-spacing:0}.sc-price,.sc-offer-price{font-family:var(--ff-body);font-weight:700;letter-spacing:-.035em}.sc-eyebrow,.sc-kicker,.sc-badge,.sc-tag{font-family:var(--ff-body);font-weight:600;letter-spacing:.08em}
+@media(max-width:700px){body{font-size:15px}h1{line-height:1.04}h2{line-height:1.06}p,li{line-height:1.58}}
+
+
+/* ============================================================
+   SC ACADEMY V7 — SISTEMA TIPOGRÁFICO COHERENTE
+   Dirección: luxury editorial + claridad comercial
+   ============================================================ */
+:root{
+  --ff-body:'Manrope', Arial, sans-serif;
+  --ff-display:'Cormorant Garamond', Georgia, serif;
+  --heading:#171513;
+  --body:#393633;
+}
+body{
+  font-family:var(--ff-body);
+  color:var(--body);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+p,li,small,label,
+.sc-sticky-bar-txt,
+.sc-nav,
+.sc-btn,
+button,
+input,textarea,select,
+.sc-price,
+.sc-offer-price{
+  font-family:var(--ff-body);
+}
+p,li{
+  font-size:16px;
+  line-height:1.68;
+  color:var(--body);
+}
+h1,h2,h3,h4,h5,h6,
+.sc-hero h1,
+.sc-section-title,
+.sc-section h2{
+  font-family:var(--ff-display);
+  color:var(--heading);
+  font-weight:500;
+  letter-spacing:-.012em;
+  line-height:1.04;
+}
+.sc-hero h1{
+  font-size:clamp(3.4rem,6.5vw,6.2rem);
+  max-width:980px;
+}
+.sc-hero p{
+  max-width:690px;
+  font-size:16px;
+  line-height:1.72;
+  color:#4b4743;
+}
+.sc-section-title,
+.sc-section h2{
+  font-size:clamp(2.7rem,4.5vw,4.35rem);
+}
+.sc-eyebrow,
+.sc-kicker,
+.sc-badge,
+.sc-tag{
+  font-family:var(--ff-body);
+  font-weight:700;
+  letter-spacing:.09em;
+}
+.sc-btn,
+button{
+  font-family:var(--ff-body);
+  font-weight:700;
+  letter-spacing:.01em;
+}
+.sc-price,
+.sc-offer-price{
+  font-weight:700;
+  letter-spacing:-.04em;
+}
+.sc-sticky-bar-txt{
+  letter-spacing:0;
+}
+@media(max-width:700px){
+  p,li{font-size:15px;line-height:1.62}
+  .sc-hero h1{
+    font-size:clamp(3rem,13vw,4.35rem);
+    line-height:1.01;
+  }
+  .sc-hero p{font-size:15px;line-height:1.62}
+  .sc-section-title,
+  .sc-section h2{
+    font-size:clamp(2.45rem,10vw,3.35rem);
+    line-height:1.04;
+  }
+}
+
+
+/* ============================================================
+   SC ACADEMY V8 — MICROTIPOGRAFÍA Y SUBTÍTULOS
+   ============================================================ */
+.sc-eyebrow,
+.sc-kicker,
+.sc-badge,
+.sc-tag{
+  font-family:'Manrope',Arial,sans-serif !important;
+  font-size:.68rem !important;
+  line-height:1.25 !important;
+  font-weight:700 !important;
+  letter-spacing:.14em !important;
+  text-transform:uppercase !important;
+  color:#8f6d49 !important;
+}
+.sc-section .sc-eyebrow,
+.sc-section .sc-kicker{
+  margin-bottom:12px;
+}
+.sc-section-title + p,
+.sc-section h2 + p,
+.sc-section-title ~ .sc-subtitle,
+.sc-section h2 ~ .sc-subtitle{
+  font-family:'Manrope',Arial,sans-serif !important;
+  font-size:.98rem !important;
+  line-height:1.65 !important;
+  font-weight:400 !important;
+  letter-spacing:0 !important;
+  color:#66615c !important;
+  max-width:680px;
+}
+.sc-hero .sc-eyebrow,
+.sc-hero .sc-kicker{
+  font-size:.7rem !important;
+  letter-spacing:.16em !important;
+  margin-bottom:14px;
+}
+.sc-btn,
+button{
+  text-transform:none;
+}
+@media(max-width:700px){
+  .sc-eyebrow,
+  .sc-kicker,
+  .sc-badge,
+  .sc-tag{
+    font-size:.62rem !important;
+    letter-spacing:.12em !important;
+  }
+}
+
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','711450688130181');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=711450688130181&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+<script>
+// ViewContent: usuario vio la página del curso
+window.addEventListener('load', function(){
+  if(typeof fbq !== 'undefined'){
+    fbq('track','ViewContent',{content_name:'Curso Online SC Academy',content_category:'Formacion Alisado',currency:'USD',value:79});
+  }
+});
+</script>
+</head>
+<body>
+
+<!-- STICKY BAR (gatillo urgencia) -->
+<div class="sc-sticky-bar" id="scStickyBar">
+  <span class="sc-sticky-bar-txt">🎓 Curso Online SC Academy · <strong>$79 USD</strong> · Pago único · Acceso de por vida</span>
+  <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-sticky-bar-btn">Ver el curso</a>
+</div>
+<!-- MODAL MASTERCLASS -->
+<div class="sc-modal-ov" id="scModal">
+  <div class="sc-modal">
+    <button class="sc-modal-close" onclick="scCloseModal()">&#215;</button>
+    <span class="sc-modal-label">Proceso de admisión</span>
+    <h2 class="sc-modal-title">Postular a Masterclass Presencial</h2>
+    <p class="sc-modal-sub">Cupos muy limitados por fecha. Completa tu solicitud y te contactamos en 24-48 hrs para confirmar disponibilidad.</p>
+    <div class="sc-form">
+      <div class="sc-form-row">
+        <div class="sc-form-g"><label>Nombre completo *</label><input id="sc-nombre" type="text" placeholder="Tu nombre"></div>
+        <div class="sc-form-g"><label>Email *</label><input id="sc-email" type="email" placeholder="tu@email.com"></div>
+      </div>
+      <div class="sc-form-g"><label>WhatsApp *</label><input id="sc-wa" type="tel" placeholder="+56 9 ..."></div>
+      <div class="sc-form-g">
+        <label>Experiencia previa</label>
+        <select>
+          <option>Sin experiencia, quiero empezar desde cero</option>
+          <option>Básica, he practicado en mi o amigas</option>
+          <option>Trabajo actualmente con clientas</option>
+        </select>
+      </div>
+      <div class="sc-form-g"><label>Puedes viajar a Santiago? *</label>
+        <select>
+          <option>Si, sin problema</option>
+          <option>Depende de las fechas</option>
+          <option>Me seria difícil</option>
+        </select>
+      </div>
+      <div class="sc-form-g"><label>¿Estás en condiciones de invertir en tu formación para crecer como profesional y construir tu propio negocio de alisados? *</label>
+        <select id="sc-inversion">
+          <option value="">— Selecciona una opción —</option>
+          <option>Sí, estoy lista para invertir en mi futuro profesional</option>
+          <option>Necesito financiamiento o facilidades de pago</option>
+          <option>Todavía lo estoy evaluando</option>
+          <option>Por ahora no puedo invertir</option>
+        </select>
+      </div>
+      <button class="sc-form-submit" onclick="scEnviarPostulacion()">Enviar Solicitud de Admisión</button>
+      <p class="sc-form-note">Te contactamos en 24-48 hrs por WhatsApp.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     1. HERO
+     ============================================================ -->
+<section class="sc-hero" id="sc-top">
+  <div class="sc-hero-inner">
+    <div class="sc-hero-badge">SC Academy · Formación Capilar Profesional</div>
+    <div class="sc-hero-ornament"><span>&#10022;</span></div>
+    <h1 class="sc-hero-h1">
+      <span class="sc-h1-line1">Aprende Alisado Progresivo</span>
+      <span class="sc-h1-line2">con un Método Profesional</span>
+    </h1>
+    <p class="sc-hero-sub">Aprende a diagnosticar el cabello, aplicar correctamente la técnica y trabajar con mayor seguridad. Una formación online creada desde la experiencia real de SC Academy.</p>
+    <div class="sc-hero-income"><strong>De cero a dominar una habilidad que puedes convertir en un servicio.</strong><br><span>Sin experiencia previa · Acceso de por vida · Certificación digital</span></div>
+    <div class="sc-hero-ctas">
+      <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-btn sc-btn-dark">Quiero aprender alisado</a>
+      <a href="#sc-programas" class="sc-btn sc-btn-outline">Ver qué incluye</a>
+    </div>
+    <div class="sc-trust-bar">
+      <div class="sc-trust-item"><span class="sc-trust-check">✦</span> Curso online</div>
+      <div class="sc-trust-item"><span class="sc-trust-check">✦</span> Acceso de por vida</div>
+      <div class="sc-trust-item"><span class="sc-trust-check">✦</span> Certificación digital</div>
+    </div>
+  </div>
+</section>
+
+<section class="sc-proof-strip">
+  <div class="sc-proof-grid">
+    <div class="sc-proof-item"><span class="sc-proof-n">100+</span><span class="sc-proof-l">Alumnas formadas</span></div>
+    <div class="sc-proof-item"><span class="sc-proof-n">6.000+</span><span class="sc-proof-l">Transformaciones</span></div>
+    <div class="sc-proof-item"><span class="sc-proof-n">6+</span><span class="sc-proof-l">Países</span></div>
+    <div class="sc-proof-item"><span class="sc-proof-n">14</span><span class="sc-proof-l">Módulos</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. RESULTADOS VISUALES
+     ============================================================ -->
+<section class="sc-resultados">
+  <div class="sc-inner">
+    <span class="sc-label">Resultados reales</span>
+    <h2 class="sc-title">Aprende una técnica. Desarrolla una habilidad.</h2>
+    <p class="sc-subtitle">El objetivo no es acumular videos: es que entiendas qué hacer, por qué hacerlo y cómo trabajar cada caso.</p>
+    <div class="sc-gallery-grid sc-stagger">
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_00_kjpg5o.jpg" alt="Resultado alisado progresivo oscuro" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>Antes del Tratamiento</span></div>
+      </div>
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_01_wniwek.jpg" alt="Alumnas aplicando técnica" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>En Práctica</span></div>
+      </div>
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_02_bsim46.jpg" alt="Resultado cabello negro liso" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>Resultado Final</span></div>
+      </div>
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_03_tuyos3.jpg" alt="Cabello antes del alisado" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>Resultado Alisado</span></div>
+      </div>
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_04_zwcp7v.jpg" alt="Resultado cabello con brillo" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>Brillo y Suavidad</span></div>
+      </div>
+            <div class="sc-gallery-item">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_05_gdui5y.jpg" alt="Resultado castaño brillante" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sc-gallery-tag"><span>Resultado Liso</span></div>
+      </div>
+
+    </div>
+    <div class="sc-benefit-grid">
+      <div class="sc-benefit"><span class="sc-benefit-icon">01</span><h3>Diagnosticar</h3><p>Aprende a observar porosidad, elasticidad, resistencia y condición del cabello antes de trabajar.</p></div>
+      <div class="sc-benefit"><span class="sc-benefit-icon">02</span><h3>Aplicar</h3><p>Comprende el proceso y los criterios técnicos que necesitas para ejecutar el servicio con mayor seguridad.</p></div>
+      <div class="sc-benefit"><span class="sc-benefit-icon">03</span><h3>Ofrecer el servicio</h3><p>Convierte lo aprendido en una habilidad que puedes desarrollar desde casa o en un salón.</p></div>
+    </div>
+
+    <div class="sc-resultados-bottom">
+      <p>Quieres aprender a lograr estos resultados?</p>
+      <a href="#sc-programas" class="sc-btn sc-btn-light">Ver el curso</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. PARA QUIEN ES
+     ============================================================ -->
+<section class="sc-pq">
+  <div class="sc-inner-md">
+    <span class="sc-label">Es para ti si...</span>
+    <h2 class="sc-title">Este Curso Esta Hecho Para Ti</h2>
+    <p class="sc-subtitle">No necesitas experiencia previa. Solo necesitas claridad en lo que quieres lograr.</p>
+    <div class="sc-pq-grid sc-stagger">
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Quieres aprender alisados desde cero</strong>
+          <span>Empezamos desde la fisiología del cabello. Sin base técnica previa, construimos todo desde los fundamentos reales.</span>
+        </div>
+      </div>
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Quieres generar ingresos en estética</strong>
+          <span>El alisado progresivo es uno de los servicios más solicitados y mejor pagados en salónes de toda America Latina.</span>
+        </div>
+      </div>
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Ya trabajas con cabello y quieres mejorar tu técnica</strong>
+          <span>Tienes práctica pero sientes que te falta criterio profesional. Aquí lo construyes con metodología real.</span>
+        </div>
+      </div>
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Quieres emprender desde tu hogar o salón</strong>
+          <span>SC Academy te entrega las herramientas técnicas y una ruta clara para comenzar a ofrecer servicios con mayor seguridad.</span>
+        </div>
+      </div>
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Estas fuera de Chile y buscas formación de calidad</strong>
+          <span>El curso online no tiene fronteras. Alumnas en Argentina, Colombia, Peru, Mexico y mas ya se formaron con el Metodo SC.</span>
+        </div>
+      </div>
+      <div class="sc-pq-item">
+        <div class="sc-pq-icon">&#10003;</div>
+        <div class="sc-pq-txt">
+          <strong>Quieres soporte real mientras practicas</strong>
+          <span>No aprendes de forma improvisada. Tienes una formación estructurada para resolver las dudas que aparecen durante la práctica.</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-pq-no sc-reveal">
+      <p>Probablemente no es para ti si...</p>
+      <ul>
+        <li>Buscas un curso rápido sin profundidad técnica real</li>
+        <li>No tienes tiempo para dedicarle al aprendizaje y la práctica</li>
+        <li>Esperas resultados sin ninguna práctica de tu parte</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. EDUCADORA
+     ============================================================ -->
+<section class="sc-edu">
+  <div class="sc-inner">
+    <span class="sc-label">Tu educadora</span>
+    <h2 class="sc-title" style="margin-bottom:28px">Quien Te Va a Enseñar</h2>
+    <div class="sc-edu-wrap sc-reveal">
+      <div class="sc-edu-img">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_06_pw5zqq.jpg" alt="Stefania - Fundadora SC Academy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="sc-edu-body">
+        <span class="sc-label" style="text-align:left">Fundadora SC Academy</span>
+        <h3 class="sc-edu-name">Stefania</h3>
+        <span class="sc-edu-role">Educadora capilar · Fundadora de SC Academy y SC Beauty Studio · Santiago, Chile</span>
+        <p class="sc-edu-bio">Aprender alisado progresivo me cambio la vida. No exagero. Antes de esto buscaba una habilidad que me diera independencia real — algo que pudiera hacer con mis maños, desde donde estuviera, sin depender de nadie. Cuando encontre los alisados, entendi que habia encontrado exactamente eso.</p>
+        <p class="sc-edu-bio">En 6 años pase de practicar en amigas a tener mas de 6.000 transformaciones capilares, un salón propio en Santiago y alumnas formadas en 7 países. No porque tenga un don especial — sino porque aprendi la técnica de verdad, con criterio, y no me rendi cuando al principio los resultados no eran perfectos.</p>
+        <p class="sc-edu-bio">Cree SC Academy porque queria que otras mujeres tuvieran acceso a lo mismo que yo tuve: una formación real, con soporte continuo y una metodología que te acompaña mientras aprendes. No un video que te deja sola con tus dudas.</p>
+        <blockquote style="border-left:3px solid var(--gold);padding:10px 0 10px 16px;margin:0 0 20px;font-family:var(--ff-display);font-size:1.1rem;font-style:italic;color:var(--gold);line-height:1.55">"Partí este negocio en plena pandemia — con deudas, miedo y estrés. Hoy tengo el estudio de mis sueños y vivo de lo que amo."</blockquote>
+        <div class="sc-edu-stats sc-stagger">
+          <div class="sc-edu-stat"><span class="sc-edu-stat-n">6.000+</span><span class="sc-edu-stat-l">Transformaciónes</span></div>
+          <div class="sc-edu-stat"><span class="sc-edu-stat-n">100+</span><span class="sc-edu-stat-l">Alumnas formadas</span></div>
+          <div class="sc-edu-stat"><span class="sc-edu-stat-n">6+</span><span class="sc-edu-stat-l">Paises</span></div>
+        </div>
+        <div class="sc-edu-creds">
+          <div class="sc-edu-cred"><span>&#10022;</span><span>Fundadora de SC Beauty Studio, Santiago de Chile</span></div>
+          <div class="sc-edu-cred"><span>&#10022;</span><span>Especialista en alisado progresivo profesional desde 2020</span></div>
+          <div class="sc-edu-cred"><span>&#10022;</span><span>Creadora del Metodo SC — técnica y criterio en un solo programa</span></div>
+          <div class="sc-edu-cred"><span>&#10022;</span><span>Formación activa en Chile, Australia, Canadá, Argentina, Colombia, Perú y México</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. QUE APRENDERAS
+     ============================================================ -->
+<section class="sc-aprende">
+  <div class="sc-inner">
+    <span class="sc-label">Contenidos</span>
+    <h2 class="sc-title">Lo Que Vas a Aprender</h2>
+    <p class="sc-subtitle">No recetas. No pasos genericos. Criterio profesional aplicado a cada tipo de cabello.</p>
+    <div class="sc-aprende-grid sc-stagger">
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">01</span>
+        <div class="sc-aprende-txt">
+          <strong>Fisiología y estructura del cabello</strong>
+          <span>Entiendes como funciona el cabello antes de tocar un producto. La base que diferencia a un técnico de un profesional.</span>
+        </div>
+      </div>
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">02</span>
+        <div class="sc-aprende-txt">
+          <strong>Diagnóstico capilar profesional</strong>
+          <span>Aprendes a leer el cabello antes de cada servicio: porosidad, afecciones, historial. El diagnóstico correcto es la base de todo resultado.</span>
+        </div>
+      </div>
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">03</span>
+        <div class="sc-aprende-txt">
+          <strong>Técnica de alisado progresivo completa</strong>
+          <span>Paso a paso real: preparacion, aplicación, tiempos, sellado con plancha. Adaptado a cada textura y tipo de cabello.</span>
+        </div>
+      </div>
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">04</span>
+        <div class="sc-aprende-txt">
+          <strong>Higiene, ética y profesionalismo</strong>
+          <span>Lo que separa a una técnica de una profesional: desinfeccion de herramientas, trato con la clienta y ética del servicio.</span>
+        </div>
+      </div>
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">05</span>
+        <div class="sc-aprende-txt">
+          <strong>Cuidados post-alisado y fidelización</strong>
+          <span>Que decirle a tu clienta después. Como alargar el resultado, que productos recomendar y como construir clientas recurrentes.</span>
+        </div>
+      </div>
+      <div class="sc-aprende-item">
+        <span class="sc-aprende-num">06</span>
+        <div class="sc-aprende-txt">
+          <strong>Como potenciar tus redes sociales</strong>
+          <span>Como mostrar tu trabajo en Instagram para atraer clientas. El módulo que convierte tu técnica en un negocio visible.</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-aprende-cta sc-reveal">
+      <div style="display:none;margin:0 auto 24px;max-width:340px;border:1px solid var(--border);overflow:hidden">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_07_ht37hk.jpg" alt="Stefania con plancha profesional" style="width:100%;display:block;object-fit:cover">
+        <p style="padding:8px 12px;font-size:.7rem;font-style:italic;color:var(--text);opacity:.45;text-align:center;border-top:1px solid var(--border);margin:0">Stefania · Fundadora SC Academy</p>
+      </div>
+      <p>Esto es lo que necesitas aprender?</p>
+      <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-btn sc-btn-dark">Quiero aprender alisado progresivo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. MODULOS DEL CURSO
+     ============================================================ -->
+<section class="sc-modulos">
+  <div class="sc-inner">
+    <span class="sc-label">Programa completo</span>
+    <h2 class="sc-title">14 Módulos. De Cero a Profesional.</h2>
+    <p class="sc-subtitle">Contenido estructurado para avanzar con claridad — desde la teoría hasta la práctica real con cabello.</p>
+    <div class="sc-mod-grid sc-stagger">
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">00</span>
+        <div class="sc-mod-content">
+          <strong>Bienvenida</strong>
+          <span>Cómo usar el curso, qué esperar y como sacarle el máximo provecho desde el primer día.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">01</span>
+        <div class="sc-mod-content">
+          <strong>Fisiología del cabello</strong>
+          <span>Estructura interna, ciclo capilar y como reaccionan los distintos tipos de cabello a los productos químicos.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">02</span>
+        <div class="sc-mod-content">
+          <strong>Comportamiento del cabello</strong>
+          <span>pH, porosidad, elasticidad y resistencia. Por qué el mismo producto da resultados distintos en distintos cabellos.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">03</span>
+        <div class="sc-mod-content">
+          <strong>Partes del cabello</strong>
+          <span>Cutícula, córtex, médula y su rol en el alisado. Entender la estructura es entender por que funciona la técnica.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">04</span>
+        <div class="sc-mod-content">
+          <strong>Afecciones del cabello</strong>
+          <span>Identificar cabellos danados, porosos en exceso, secos o con procesos químicos previos — y como actuar en cada caso.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">05</span>
+        <div class="sc-mod-content">
+          <strong>Analisis y diagnóstico capilar</strong>
+          <span>La habilidad mas importante antes de cualquier servicio. Ficha técnica, historial y contraindicaciones.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">06</span>
+        <div class="sc-mod-content">
+          <strong>Tipos de cabello</strong>
+          <span>Clasíficacion por textura, densidad y porosidad. Como adaptar el protocolo a cada tipo para garantizar el resultado.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">07</span>
+        <div class="sc-mod-content">
+          <strong>Higiene y desinfeccion de herramientas</strong>
+          <span>Protocolos de bioseguridad profesional. Lo que distingue un servicio amateur de un servicio que da confianza.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">08</span>
+        <div class="sc-mod-content">
+          <strong>Que son los alisados progresivos</strong>
+          <span>Historia, tipos de productos, como funcionan químicamente y por que son el servicio mas solicitado del mercado capilar.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">09</span>
+        <div class="sc-mod-content">
+          <strong>Técnica de Alisado Progresivo Paso a Paso</strong>
+          <span>El protocolo completo: preparacion, aplicación, tiempos de exposicion, lavado y sellado con plancha. Sin atajos.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">10</span>
+        <div class="sc-mod-content">
+          <strong>Ética Profesional</strong>
+          <span>Como tratar a tu clienta, manejar expectativas, comúnicar limitaciones y construir una reputacion solida a largo plazo.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">11</span>
+        <div class="sc-mod-content">
+          <strong>Cuidados post-alisado</strong>
+          <span>Que productos recomendar, como alargar el resultado y las instrucciones exactas que debes darle a cada clienta.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item">
+        <span class="sc-mod-num">12</span>
+        <div class="sc-mod-content">
+          <strong>Como potenciar tus redes sociales</strong>
+          <span>Como fotografíar tus resultados, que publicar, con que frecuencia y como convertir tu Instagram en un canal de captacion de clientas.</span>
+        </div>
+      </div>
+
+      <div class="sc-mod-item sc-mod-practica">
+        <span class="sc-mod-num">14</span>
+        <div class="sc-mod-content">
+          <strong>Módulo Práctico — Sesion en Vivo</strong>
+          <span>Aplicación de la técnica completa en cabello real. El cierre del programa donde todo lo teorico toma forma.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="sc-mod-total sc-reveal">
+      <p>14 módulos · Videos + material descargable · Acceso de por vida · <span>Certificado SC Academy al finalizar</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. TESTIMONIOS (antes del pricing — reduce resistencia de compra)
+     ============================================================ -->
+<section class="sc-testi">
+  <div class="sc-inner">
+    <span class="sc-label">Lo que dicen las alumnas</span>
+    <h2 class="sc-title">Resultados Reales, Palabras Reales</h2>
+    <p class="sc-subtitle">Mas de 100 profesionales ya se formaron con el Metodo SC en Chile y America Latina.</p>
+
+    <div class="sc-testi-featured sc-reveal">
+      <div class="sc-testi-img">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_08_fhk3bp.jpg" alt="Javiera Pinto Catalán - Alumna SC Academy trabajando en Australia" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+      </div>
+      <div class="sc-testi-body">
+        <div class="sc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <h3>Javiera Pinto</h3>
+        <span class="sc-testi-role">Actualmente en Australia · Masterclass Presencial SC Academy</span>
+        <p>Vine sin experiencia previa y sali con las herramientas para empezar a atender clientas desde el primer día. Stefania explica todo con mucha claridad y paciencia — no solo la técnica, sino el criterio para adaptarse a cada tipo de cabello.</p>
+        <p class="sc-testi-hl">"Recupere la inversión en la primera semana. Definitivamente fue la mejor decisión que tome para mi carrera."</p>
+        <p style="font-size:.8rem;font-style:italic;opacity:.45;font-weight:300">Masterclass Presencial · Ahora trabajando en Australia</p>
+      </div>
+    </div>
+
+    <div class="sc-testi-grid sc-stagger">
+      <div class="sc-testi-card">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_09_gpfbu2.jpg" alt="Mackarena Bobadilla · SC Academy" style="width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top;margin-bottom:10px;border:2px solid var(--border)">
+        <div class="sc-stars" style="margin-bottom:8px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="sc-testi-quote">Me llevo la técnica completa y la seguridad para cobrar lo que vale mi trabajo. El módulo de diagnóstico capilar me cambio la forma de ver a cada clienta.</p>
+        <div class="sc-testi-author"><strong>Mackarena Bobadilla</strong><span>Santiago · Masterclass Presencial</span></div>
+      </div>
+      <div class="sc-testi-card">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174395/img_10_ecsmaf.jpg" alt="Rossana Munoz" style="width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top;margin-bottom:10px;border:2px solid var(--border)">
+        <div class="sc-stars" style="margin-bottom:8px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="sc-testi-quote">Tomé el curso desde Argentina y en 3 semanas ya estába cobrando mis primeros servicios. El material es clarísimo y se adapta perfecto a mi ritmo.</p>
+        <div class="sc-testi-author"><strong>Rossana Muñoz</strong><span>Santiago · Curso Online SC Academy</span></div>
+      </div>
+      <div class="sc-testi-card">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_11_xz3nrg.jpg" alt="Camila Aravena" style="width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top;margin-bottom:10px;border:2px solid var(--border)">
+        <div class="sc-stars" style="margin-bottom:8px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="sc-testi-quote">Nunca pensé que aprender online pudiera ser tan completo. Apliqué el módulo de diagnóstico desde el primer día y mis resultados mejoraron al tiro.</p>
+        <div class="sc-testi-author"><strong>Camila Aravena</strong><span>Santiago · Curso Online SC Academy</span></div>
+      </div>
+      <div class="sc-testi-card">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_12_mjbvvt.jpg" alt="Camila Segredo · SC Academy" style="width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top;margin-bottom:10px;border:2px solid var(--border)">
+        <div class="sc-stars" style="margin-bottom:8px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="sc-testi-quote">Ya tenia algunas clientas pero no me sentia segura cobrando. Después de SC Academy cobro con confianza y mis resultados mejoraron notablemente.</p>
+        <div class="sc-testi-author"><strong>Camila Segredo</strong><span>Santiago · Masterclass Presencial</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. CERTIFICACION
+     ============================================================ -->
+<section class="sc-cert">
+  <div class="sc-inner-md">
+    <span class="sc-label">Reconocimiento profesional</span>
+    <h2 class="sc-title">Tu Certificado SC Academy</h2>
+    <p class="sc-subtitle">Al completar tu formación recibes un certificado que acredita tu nivel profesional ante clientas y empleadores.</p>
+    <div class="sc-cert-card sc-reveal">
+      <span class="sc-cert-icon">&#127891;</span>
+      <div style="width:100%;max-width:420px;margin:0 auto 20px;overflow:hidden;border:1px solid rgba(184,149,106,.2)">
+        <img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_13_rrjal0.jpg" alt="Alumnas certificadas SC Academy" style="width:100%;display:block;object-fit:cover">
+        <p style="padding:8px 12px;font-size:.68rem;font-style:italic;color:rgba(184,149,106,.55);text-align:center;border-top:1px solid rgba(184,149,106,.15);margin:0;background:rgba(255,255,255,.02)">Javiera y Vania · Alumnas certificadas Masterclass Presencial</p>
+      </div>
+      <p class="sc-cert-name">Certificado SC Academy</p>
+      <p class="sc-cert-sub">Especialista en Alisado Progresivo Profesional · Metodo SC</p>
+    </div>
+    <div class="sc-cert-feats sc-stagger">
+      <div class="sc-cert-feat"><span class="sc-cert-feat-icon">&#10022;</span><p>Acredita tu formación ante clientas y empleadores</p></div>
+      <div class="sc-cert-feat"><span class="sc-cert-feat-icon">&#10022;</span><p>Respaldado por SC Academy y SC Beauty Studio</p></div>
+      <div class="sc-cert-feat"><span class="sc-cert-feat-icon">&#10022;</span><p>Digital en alta resolución, listo para imprimir o compartir</p></div>
+      <div class="sc-cert-feat"><span class="sc-cert-feat-icon">&#10022;</span><p>Compartible en Instagram, LinkedIn y curriculum</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. VALOR DEL SERVICIO
+     ============================================================ -->
+<section class="sc-valor">
+  <div class="sc-inner-md">
+    <span class="sc-label">Oportunidad de negocio</span>
+    <h2 class="sc-title">Por Que el Alisado Progresivo Es una Habilidad Rentable</h2>
+    <p class="sc-subtitle">Un servicio de alta demanda constante y uno de los tickets mas altos en el mundo capilar.</p>
+    <div class="sc-valor-grid sc-stagger">
+      <div class="sc-valor-item">
+        <div class="sc-valor-icon">$</div>
+        <div class="sc-valor-txt">
+          <strong>Ticket entre $40.000 y $120.000 CLP por servicio</strong>
+          <span>Entre $40 y $120 USD aproximadamente. Con dos a tres clientas mensuales ya recuperas la inversión del curso completo.</span>
+        </div>
+      </div>
+      <div class="sc-valor-item">
+        <div class="sc-valor-icon">&#8593;</div>
+        <div class="sc-valor-txt">
+          <strong>Alta frecuencia de repeticion</strong>
+          <span>El alisado progresivo se renueva cada 3 a 6 meses. Una clienta satisfecha vuelve sola, trae referencias y se convierte en ingreso recurrente.</span>
+        </div>
+      </div>
+      <div class="sc-valor-item">
+        <div class="sc-valor-icon">&#127968;</div>
+        <div class="sc-valor-txt">
+          <strong>Operable desde casa o en salón</strong>
+          <span>Sin necesidad de local propio para empezar. Muchas alumnas comenzaron atendiendo desde el hogar con inversión minima en insumos.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. PRICING — TRES PRODUCTOS EN JERARQUIA CLARA
+     ============================================================ -->
+
+<!-- 6 MESES -->
+<section class="sc-decision">
+  <div class="sc-inner-md">
+    <span class="sc-label">Antes de inscribirte</span>
+    <h2 class="sc-title">¿Qué cambia cuando tienes un método?</h2>
+    <div class="sc-decision-intro"><p>El curso está pensado para ordenar el aprendizaje: primero entiendes el cabello, luego la técnica y finalmente la aplicación práctica.</p></div>
+    <div class="sc-decision-grid sc-stagger">
+      <div class="sc-decision-col sc-decision-yes">
+        <div class="sc-decision-head"><span class="sc-decision-badge sc-decision-badge-yes">Con una formación estructurada</span></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-yes">✓</div><div class="sc-decision-txt"><strong>Aprendes por etapas</strong>El contenido está organizado para construir criterio técnico progresivamente.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-yes">✓</div><div class="sc-decision-txt"><strong>Entiendes el diagnóstico</strong>Aprendes qué observar antes de decidir cómo trabajar un cabello.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-yes">✓</div><div class="sc-decision-txt"><strong>Tienes material para repasar</strong>El acceso de por vida te permite volver a los módulos cuando lo necesites.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-yes">✓</div><div class="sc-decision-txt"><strong>Obtienes certificación</strong>Al completar la formación cuentas con un certificado digital.</div></div>
+      </div>
+      <div class="sc-decision-col sc-decision-no">
+        <div class="sc-decision-head"><span class="sc-decision-badge sc-decision-badge-no">Aprender sin estructura</span></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-no">×</div><div class="sc-decision-txt"><strong>Información dispersa</strong>Videos y consejos pueden dejar preguntas sin resolver.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-no">×</div><div class="sc-decision-txt"><strong>Poco criterio para decidir</strong>Conocer un producto no es lo mismo que saber evaluar un cabello.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-no">×</div><div class="sc-decision-txt"><strong>Más ensayo y error</strong>Sin una secuencia de aprendizaje, avanzar puede tomar más tiempo.</div></div>
+        <div class="sc-decision-item"><div class="sc-decision-dot sc-decision-dot-no">×</div><div class="sc-decision-txt"><strong>Sin una ruta clara</strong>Cuestá saber qué aprender primero y qué practicar después.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sc-pricing" id="sc-programas">
+  <div class="sc-inner">
+    <div class="sc-pricing-intro">
+      <span class="sc-label">Elige tu formación</span>
+      <h2 class="sc-title">Empieza por el Curso Online</h2>
+      <p class="sc-subtitle">Una formación completa para aprender a tu ritmo, con una experiencia presencial disponible como siguiente paso.</p>
+    </div>
+    <div class="sc-offer-wrap">
+      <div class="sc-offer-main sc-reveal">
+        <div class="sc-offer-top">
+          <div>
+            <span class="sc-offer-kicker">Formación principal</span>
+            <h3>Curso Online SC Academy</h3>
+            <p class="sc-offer-desc">14 módulos para construir una base técnica en alisado progresivo, desde la fisiología del cabello hasta la aplicación y el trabajo profesional.</p>
+          </div>
+          <div class="sc-offer-price"><span class="sc-offer-old">Valor referencial $149 USD</span><strong>$79</strong><span>USD · pago único</span></div>
+        </div>
+        <div class="sc-offer-list">
+          <div>14 módulos de formación</div>
+          <div>Acceso de por vida</div>
+          <div>Certificación digital</div>
+          <div>Material de apoyo</div>
+          <div>Contenido desde cero</div>
+          <div>Aprendizaje a tu ritmo</div>
+        </div>
+        <div style="text-align:center">
+          <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-btn sc-btn-gold" style="font-size:1rem;padding:15px 38px">Quiero entrar a SC Academy</a>
+        </div>
+        <p class="sc-offer-note">Pago único · Acceso de por vida · La compra se procesa mediante Hotmart.</p>
+      </div>
+      <div class="sc-secondary-grid sc-masterclass-only">
+<div class="sc-secondary sc-reveal">
+          <span class="sc-offer-kicker">Experiencia presencial</span>
+          <h4>Masterclass Presencial</h4>
+          <p>Formación intensiva presencial con Stefania. Fechas y cupos se gestionan mediante postulación.</p>
+          <span class="sc-secondary-price">$380 USD</span><small>proceso de admisión</small>
+          <div style="margin-top:14px"><a href="#" onclick="scOpenModal();return false" class="sc-btn sc-btn-light" style="font-size:.8rem;padding:9px 16px">Postular</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sc-faqs">
+  <div class="sc-inner-md">
+    <span class="sc-label">Preguntas frecuentes</span>
+    <h2 class="sc-title">Todo Lo Que Necesitas Saber</h2>
+    <p class="sc-subtitle">Resolvemos las dudas mas comunes antes de que tomes tu decisión.</p>
+
+    <div id="scFaqList">
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿Necesito experiencia previa para tomar el curso?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>No. El curso está diseñado para comenzar desde cero. El primer módulo cubre fisiología y estructura del cabello — antes de tocar cualquier técnica, entiendes como funciona el cabello por dentro. Si ya tienes experiencia, avanzaras mas rápido y con mayor criterio técnico.</p>
+        </div>
+      </div>
+
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿Por cuánto tiempo tengo acceso al curso?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>El acceso es de por vida. Una vez que lo tienes, puedes volver al material cuando necesites repasar un módulo, resolver una duda puntual con una clienta o actualizar tu técnica.</p>
+        </div>
+      </div>
+
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿Qué materiales necesito para practicar?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>Dentro del curso encontraras una guía de materiales recomendados. En general necesitas producto alisador progresivo, plancha de calidad, guantes, peine de cola y secciones. <strong>No necesitas un salón</strong> — muchas alumnas empiezan practicando desde casa.</p>
+        </div>
+      </div>
+
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿Puedo tomar el curso desde fuera de Chile?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>Si, el curso online no tiene límite geográfico. Ya tenemos alumnas certificadas en Argentina, Colombia, Peru, Mexico, Espana y mas. El contenido y la técnica es aplicable en cualquier mercado.</p>
+        </div>
+      </div>
+
+      <div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿El certificado es digital o físico?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>El certificado del curso online es <strong>digital en alta resolución</strong>, listo para imprimir, compartir en Instagram o adjuntar en tu curriculum. Las alumnas de la Masterclass Presencial reciben además un certificado físico firmado por Stefania.</p>
+        </div>
+      </div>
+<div class="sc-faq-item">
+        <div class="sc-faq-q" onclick="scFaq(this)">
+          <span class="sc-faq-q-txt">¿Cuánto tiempo toma completar el curso?</span>
+          <div class="sc-faq-icon">+</div>
+        </div>
+        <div class="sc-faq-a">
+          <p>A tu propio ritmo. El curso tiene 14 módulos que puedes completar en 2 a 4 semanas dedicando algunas horas por semana. No hay fechas limite ni clases en vivo obligatorias — avanzas cuando puedes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sc-faqs-bottom sc-reveal">
+      <p>¿Tienes otra pregunta?</p>
+      <a href="https://wa.me/56966947940" target="_blank" class="sc-btn sc-btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribenos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12. CTA FINAL
+     ============================================================ -->
+<section class="sc-cta">
+  <div class="sc-inner-sm">
+    <span class="sc-label">SC Academy</span>
+    <h2 class="sc-cta-title">Aprende el método antes de empezar a cobrar por él.</h2>
+    <p class="sc-cta-lead">Si quieres aprender alisado progresivo desde cero, aquí tienes una ruta completa para comenzar con una base técnica y volver al contenido cada vez que lo necesites.</p>
+    <div class="sc-cta-btns">
+      <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-btn sc-btn-gold" style="font-size:1rem;padding:15px 36px">Quiero aprender — $79 USD</a>
+      <a href="#sc-programas" class="sc-btn sc-btn-light">Ver qué incluye</a>
+    </div>
+    <div class="sc-cta-stats">
+      <div class="sc-cta-stat"><span class="sc-stat-n">100+</span><span class="sc-stat-l">alumnas formadas</span></div>
+      <div class="sc-cta-stat"><span class="sc-stat-n">6.000+</span><span class="sc-stat-l">transformaciones</span></div>
+      <div class="sc-cta-stat"><span class="sc-stat-n">6+</span><span class="sc-stat-l">países</span></div>
+      <div class="sc-cta-stat"><span class="sc-stat-n">$79</span><span class="sc-stat-l">USD pago único</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="sc-mobile-buy">
+  <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank">Entrar a SC Academy · $79 USD</a>
+</div>
+
+<!-- SCREENSHOT TESTIMONIALS -->
+<section class="sc-ss-section" id="sc-capturas">
+  <div class="sc-ss-header">
+    <span class="sc-ss-eyebrow">Mensajes reales · Sin editar</span>
+    <h2 class="sc-ss-title">Lo que dicen nuestras alumnas</h2>
+    <p class="sc-ss-sub">Capturas de WhatsApp, Instagram y Google — tal como llegaron.</p>
+  </div>
+
+  <div class="sc-ss-track-wrap">
+    <div class="sc-ss-track sc-ss-track-a">
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_14_xghocg.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_15_pxwkyf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_16_hdulzv.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_17_smoi3o.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_18_y4yzpm.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_19_jqa0v5.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_20_npoq5j.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_21_pu4hmz.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_22_xdemgf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_23_vdblkx.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_14_xghocg.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_15_pxwkyf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_16_hdulzv.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_17_smoi3o.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174396/img_18_y4yzpm.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_19_jqa0v5.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_20_npoq5j.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_21_pu4hmz.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_22_xdemgf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_23_vdblkx.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- FILA 2 ← derecha -->
+  <div class="sc-ss-track-wrap">
+    <div class="sc-ss-track sc-ss-track-b">
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_24_ub3r82.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_25_ocopts.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_26_vp8zje.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_27_xjkcfl.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_28_bzkdy8.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_29_dz902u.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_30_lvjkvl.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_31_nacmh9.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_32_fmufr2.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_33_dnmopf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_24_ub3r82.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_25_ocopts.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_26_vp8zje.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_27_xjkcfl.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174397/img_28_bzkdy8.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_29_dz902u.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_30_lvjkvl.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_31_nacmh9.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_32_fmufr2.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+      <div class="sc-ss-card"><img src="https://res.cloudinary.com/dbzmwrh5d/image/upload/v1790174398/img_33_dnmopf.jpg" alt="Testimonio alumna SC Academy" loading="lazy"></div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="sc-ss-cta">
+    <a onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:'Curso Online SC Academy',currency:'USD',value:79})}" href="https://pay.hotmart.com/K92371092J?off=oreeznz6" target="_blank" class="sc-btn sc-btn-gold" style="font-size:.95rem;padding:14px 38px">Quiero resultados como estos</a>
+    <p>Acceso inmediato · Garantía 7 días</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sc-footer">
+  <div class="sc-footer-inner">
+    <div class="sc-footer-brand">SC Academy</div>
+    <div class="sc-footer-links">
+      <a href="sc-academy-terminos.html">Terminos y condiciones</a>
+      <a href="sc-academy-privacidad.html">Politica de privacidad</a>
+      <a href="https://wa.me/56966947940" target="_blank">Contacto</a>
+      <a href="https://www.instagram.com/sc.studiocl#/" target="_blank">Instagram</a>
+    </div>
+    <p class="sc-footer-copy">&#169; 2025 SC Academy · Todos los derechos reservados · Formación Capilar Profesional · Santiago, Chile</p>
+  </div>
+</footer>
+
+<!-- WA FLOTANTE -->
+<a href="https://wa.me/56966947940" target="_blank" class="sc-wa-float" title="Escribenos por WhatsApp">
+  <div class="sc-wa-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+<script>
+
+function scEnviarPostulacion(){
+  var nombre = document.getElementById('sc-nombre').value||'No especificado';
+  var email  = document.getElementById('sc-email').value||'No especificado';
+  var wa     = document.getElementById('sc-wa').value||'No especificado';
+  var body   = 'Nueva postulacion Masterclass SC Academy\n\nNombre: '+nombre+'\nEmail: '+email+'\nWhatsApp: '+wa;
+  window.location.href='mailto:sc.beautystudiocl@gmail.com?subject=Postulacion%20Masterclass%20SC%20Academy&body='+encodeURIComponent(body);
+  if(typeof fbq !== 'undefined'){
+    fbq('track','Lead',{content_name:'Masterclass Presencial SC Academy',currency:'CLP',value:349000});
+  }
+  scCloseModal();
+}
+
+// Sticky bar
+var stickyBar = document.getElementById('scStickyBar');
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 320) stickyBar.classList.add('visible');
+  else stickyBar.classList.remove('visible');
+});
+
+// Social proof toast
+var toastData = [
+  {name:'Camila de Concepción', action:'se inscribió hace 2 horas'},
+  {name:'Valentina · Bogotá', action:'se inscribió hace 4 horas'},
+  {name:'Daniela de Lima', action:'completó el módulo 3 hoy'},
+  {name:'Javiera · Santiago', action:'se inscribió hace 1 hora'},
+  {name:'Rocío de Buenos Aires', action:'se inscribió hace 3 horas'},
+  {name:'Fernanda · Medellín', action:'completó el curso hoy'},
+  {name:'Paulina de Providencia', action:'se inscribió hace 5 horas'},
+  {name:'Sofía · Ciudad de México', action:'completó el curso hoy'},
+];
+var toastEl = document.getElementById('scToast');
+var toastName = document.getElementById('scToastName');
+var toastAction = document.getElementById('scToastAction');
+var toastIdx = 0;
+
+function showToast(){
+  var d = toastData[toastIdx % toastData.length];
+  toastName.textContent = d.name;
+  toastAction.textContent = d.action;
+  toastEl.classList.add('show');
+  setTimeout(function(){ toastEl.classList.remove('show'); }, 4000);
+  toastIdx++;
+}
+
+// Primera aparición a los 8s, luego cada 35s
+setTimeout(function(){
+  showToast();
+  setInterval(showToast, 35000);
+}, 8000);
+
+// Modal
+function scOpenModal() { document.getElementById('scModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function scCloseModal() { document.getElementById('scModal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('scModal').addEventListener('click', function(e){ if(e.target===this) scCloseModal(); });
+
+// FAQ accordion
+function scFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.sc-faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+  if(!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.sc-reveal, .sc-stagger').forEach(function(el){ ro.observe(el); });
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b26cc7e50aac49fc82e797e4c166b09d","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
